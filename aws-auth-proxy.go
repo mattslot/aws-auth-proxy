@@ -96,6 +96,7 @@ func (h *AWSProxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	req.Header.Set("X-Amz-Date", time.Now().UTC().Format(aws.ISO8601BasicFormat))
+	req.Header.Set("Content-Type", "application/json") // Temporary hack
 
 	h.Signer.Sign(req)
 
